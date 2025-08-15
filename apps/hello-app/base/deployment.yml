@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
         - name: web
-          image: ghcr.io/containership/hello-world:latest 
+          image: nginx:alpine 
           ports:
             - containerPort: 8080
-          readinessProbe:
-            httpGet: { path: /, port: 8080 }
-          livenessProbe:
-            httpGet: { path: /, port: 8080 }
+          #readinessProbe:
+          #    httpGet: { path: /, port: 8080 }
+          #livenessProbe:
+          #httpGet: { path: /, port: 8080 }
