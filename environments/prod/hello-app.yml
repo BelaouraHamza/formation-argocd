@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-app-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/BelaouraHamza/formation-argocd.git'
+    targetRevision: main
+    path: apps/hello-app/overlays/prod
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: hello-app-prod
+  syncPolicy:
+    automated:
+      prune: true        # supprime les ressources qui ne sont plus dans Git
+      selfHeal: true     # corrige les dérives automatiquement
+    syncOptions:
+      - CreateNamespace=true  # crée le namespace si inexistant
